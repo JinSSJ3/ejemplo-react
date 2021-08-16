@@ -1,5 +1,5 @@
 import { Button, makeStyles, TextField } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import "./../styles/Login.scss";
 import logo from "../static/logo_bank.png";
@@ -17,7 +17,19 @@ const Estilos = makeStyles((theme) => ({
 }));
 
 const Login = (props) => {
+
+
   const [usuarioLogin, setUsuarioLogin] = useState({ email: "", password: "" });
+
+
+/*   useEffect(() => {
+    document.title = usuarioLogin.email;
+  }, [usuarioLogin]); */
+  // 1 mount
+  // 2 despues de mount
+  // 3 cuando actualizamos
+  // 4 unmount
+
   const classes = Estilos();
   console.log("Login props", props);
   const onClickIniciarSesion = () => {
