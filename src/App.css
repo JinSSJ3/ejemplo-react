@@ -32,7 +32,31 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.contenedor {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /*  background-image: url("https://cnnespanol.cnn.com/wp-content/uploads/2016/01/bancos-precios-petrocc81leo-precc81stamos-bancarrota.jpeg?quality=100&strip=info");
+*/
+  background-color: #282c34;
+
+}
+
+.formulario {
+  background-color: white;
+  /* height: 150px; */
+  width: 180px;
+  margin: 2%;
+  padding: 1%;
+  border-radius: 4px;
+  
 }

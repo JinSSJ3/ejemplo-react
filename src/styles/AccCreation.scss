@@ -1,0 +1,38 @@
+.account-creation-container {
+    padding: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: 600px) {
+      padding: 1%;
+  
+    }
+    .step-container {
+      padding: 1%;
+  
+      .step-instruction {
+        font-size: 1.5em;
+      }
+    }
+    .country-selection {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+    }
+  } 
+  .step-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 6px;
+    padding: 2%;
+    //background-color: rgba(255, 255, 255, 0.295);
+  
+    @media (max-width: 600px) {
+      flex-direction: column;
+      justify-content: stretch;
+    }
+  }
+  
