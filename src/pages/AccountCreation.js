@@ -7,9 +7,10 @@ const AccountCreation = (props) => {
     <div className="home-page-wrapper">
       <NavBar titulo={"Banco AEDITIP - Crear Cuenta"} />
       <div className="accouunt-creation-container">
-          Creacion de cuenta
-          <MainContainer {...props}/>
-          </div>
+        Creacion de cuenta
+         <MainContainer {...props} />
+
+      </div>
     </div>
   );
 };
