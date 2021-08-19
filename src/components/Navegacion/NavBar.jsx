@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 //import IconButton from "@material-ui/core/IconButton";
 //import MenuIcon from "@material-ui/icons/Menu";
-import logo from "./../static/logo_bank.png";
+import logo from "./../../static/logo_bank.png";
 const Estilos = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -30,7 +30,7 @@ const Estilos = makeStyles((theme) => ({
 }));
 
 const NavBar = (props) => {
-  const { titulo } = props;
+  const { title } = props;
   const classes = Estilos();
 
   return (
@@ -41,7 +41,7 @@ const NavBar = (props) => {
             <img className={classes.logoImg} src={logo} alt="logo-bank" />
           </div>
           <Typography variant="h6" className={classes.title}>
-            {titulo}
+            {title || ""}
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>

@@ -9,12 +9,32 @@ const MainApp = (props) => {
   return (
     <div>
       <BrowserRouter>
-        <Route exact path="/" component={Login} />
-        <Route exact path="/user" component={Usuario} />
+        <Route
+          exact
+          path="/"
+          component={(props) => (
+            <Login {...props} title="Banco Latinoamericano AEDITIP | Login" />
+          )}
+        />
+        <Route
+          exact
+          path="/user"
+          component={(props) => (
+            <Usuario
+              {...props}
+              title="Banco Latinoamericano AEDITIP | Panel de Usuario"
+            />
+          )}
+        />
         <Route
           exact
           path="/account-creation"
-          component={(props) => <AccountCreation />}
+          component={(props) => (
+            <AccountCreation
+              {...props}
+              title="Banco Latinoamericano AEDITIP | Crear Cuenta"
+            />
+          )}
         />
         <Route
           exact

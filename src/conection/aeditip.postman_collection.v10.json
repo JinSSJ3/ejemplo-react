@@ -1,0 +1,758 @@
+{
+	"info": {
+		"_postman_id": "94bcb73c-9e70-47af-ba81-1e04f6b23cf7",
+		"name": "Banco Latinoamericano AEDITIP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Administración de Usuarios",
+			"item": [
+				{
+					"name": "Inicio de sesión",
+					"item": [
+						{
+							"name": "Iniciar sesión",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cliente\": \"[Usuario del Cliente (Dirección de Correo Electrónico)]\",\r\n    \"contrasena\": \"[Contraseña del Cliente]\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{servidor}}/api/logueo",
+									"host": [
+										"{{servidor}}"
+									],
+									"path": [
+										"api",
+										"logueo"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Inicio de sesión exitoso",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"cliente\": \"jorge.fatama@pucp.edu.pe\",\r\n    \"contrasena\": \"Banc4Segur4$\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{servidor}}/api/logueo",
+											"host": [
+												"{{servidor}}"
+											],
+											"path": [
+												"api",
+												"logueo"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"codigo\": 400,\r\n    \"token\": \"[Token de sesión]\"\r\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Creación de usuario",
+					"item": [
+						{
+							"name": "Validaciones",
+							"item": [
+								{
+									"name": "Regionalización",
+									"item": [
+										{
+											"name": "Obtener divisiones regionales - Nivel 1",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{servidor}}/api/validaciones/division-nacional?pais={{pais}}",
+													"host": [
+														"{{servidor}}"
+													],
+													"path": [
+														"api",
+														"validaciones",
+														"division-nacional"
+													],
+													"query": [
+														{
+															"key": "pais",
+															"value": "{{pais}}"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Perú",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{servidor}}/api/validaciones/division-nacional?pais=PER",
+															"host": [
+																"{{servidor}}"
+															],
+															"path": [
+																"api",
+																"validaciones",
+																"division-nacional"
+															],
+															"query": [
+																{
+																	"key": "pais",
+																	"value": "PER"
+																}
+															]
+														}
+													},
+													"_postman_previewlanguage": "json",
+													"header": null,
+													"cookie": [],
+													"body": "{\r\n    \"nombres\": [\r\n        \"Región\",\r\n        \"Provincia\",\r\n        \"Distrito\"\r\n    ],\r\n    \"divisiones\": [\r\n        {\r\n            \"clave\": \"PER-010000\",\r\n            \"valor\": \"Amazonas\"\r\n        },\r\n        {\r\n            \"clave\": \"PER-020000\",\r\n            \"valor\": \"Áncash\"\r\n        },\r\n        {\r\n            \"clave\": \"PER-030000\",\r\n            \"valor\": \"Apurímac\"\r\n        }\r\n    ]\r\n}"
+												},
+												{
+													"name": "Ecuador",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{servidor}}/api/validaciones/division-nacional?pais=ECU",
+															"host": [
+																"{{servidor}}"
+															],
+															"path": [
+																"api",
+																"validaciones",
+																"division-nacional"
+															],
+															"query": [
+																{
+																	"key": "pais",
+																	"value": "ECU"
+																}
+															]
+														}
+													},
+													"_postman_previewlanguage": "json",
+													"header": null,
+													"cookie": [],
+													"body": "{\r\n    \"nombres\":{\r\n        \"division1\": \"Provincia\",\r\n        \"division2\": \"Cantón\",\r\n        \"division3\": \"Parroquia\"\r\n    },\r\n    \"divisiones\": [\r\n        {\"codigo\": \"ECU-01\", \"nombre\": \"Azuay\"},\r\n        {\"codigo\": \"ECU-02\", \"nombre\": \"Bolívar\"},\r\n        {\"codigo\": \"ECU-03\", \"nombre\": \"Cañar\"}\r\n        //[...]\r\n    ]\r\n}"
+												},
+												{
+													"name": "Bolivia",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{servidor}}/api/validaciones/division-nacional?pais=BOL",
+															"host": [
+																"{{servidor}}"
+															],
+															"path": [
+																"api",
+																"validaciones",
+																"division-nacional"
+															],
+															"query": [
+																{
+																	"key": "pais",
+																	"value": "BOL"
+																}
+															]
+														}
+													},
+													"_postman_previewlanguage": "json",
+													"header": null,
+													"cookie": [],
+													"body": "{\r\n    \"nombres\": [\r\n        \"Departamento\",\r\n        \"Provincia\",\r\n        \"Municipio\"\r\n    ],\r\n    \"divisiones\": [\r\n        {\r\n            \"clave\": \"BOL-01\",\r\n            \"valor\": \"Chuquisaca\"\r\n        },\r\n        {\r\n            \"clave\": \"BOL-02\",\r\n            \"valor\": \"La Paz\"\r\n        },\r\n        {\r\n            \"clave\": \"BOL-03\",\r\n            \"valor\": \"Cochabamba\"\r\n        },\r\n        {\r\n            \"clave\": \"BOL-04\",\r\n            \"valor\": \"Oruro\"\r\n        },\r\n        {\r\n            \"clave\": \"BOL-05\",\r\n            \"valor\": \"Potosí\"\r\n        },\r\n        {\r\n            \"clave\": \"BOL-06\",\r\n            \"valor\": \"Tarija\"\r\n        },\r\n        {\r\n            \"clave\": \"BOL-07\",\r\n            \"valor\": \"Santa Cruz\"\r\n        },\r\n        {\r\n            \"clave\": \"BOL-08\",\r\n            \"valor\": \"Beni\"\r\n        },\r\n        {\r\n            \"clave\": \"BOL-09\",\r\n            \"valor\": \"Pando\"\r\n        }\r\n    ]\r\n}"
+												}
+											]
+										},
+										{
+											"name": "Obtener divisiones regionales - Nivel 2",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{servidor}}/api/validaciones/division-regional?nivel=2&codigo={{ubigeo-nive1}}",
+													"host": [
+														"{{servidor}}"
+													],
+													"path": [
+														"api",
+														"validaciones",
+														"division-regional"
+													],
+													"query": [
+														{
+															"key": "nivel",
+															"value": "2"
+														},
+														{
+															"key": "codigo",
+															"value": "{{ubigeo-nive1}}"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Apurímac - Perú",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{servidor}}/api/general/division-regional?nivel=2&codigo=PER-030000",
+															"host": [
+																"{{servidor}}"
+															],
+															"path": [
+																"api",
+																"general",
+																"division-regional"
+															],
+															"query": [
+																{
+																	"key": "nivel",
+																	"value": "2"
+																},
+																{
+																	"key": "codigo",
+																	"value": "PER-030000"
+																}
+															]
+														}
+													},
+													"_postman_previewlanguage": "json",
+													"header": null,
+													"cookie": [],
+													"body": "[\r\n    {\r\n        \"clave\": \"PER-030100\",\r\n        \"valor\": \"Abancay\"\r\n    },\r\n    {\r\n        \"clave\": \"PER-030200\",\r\n        \"valor\": \"Aymaraes\"\r\n    },\r\n    {\r\n        \"clave\": \"PER-030300\",\r\n        \"valor\": \"Andahuaylas\"\r\n    },\r\n    {\r\n        \"clave\": \"PER-030400\",\r\n        \"valor\": \"Antabamba\"\r\n    },\r\n    {\r\n        \"clave\": \"PER-030500\",\r\n        \"valor\": \"Cotabambas\"\r\n    },\r\n    {\r\n        \"clave\": \"PER-030600\",\r\n        \"valor\": \"Grau\"\r\n    },\r\n    {\r\n        \"clave\": \"PER-030700\",\r\n        \"valor\": \"Chincheros\"\r\n    }\r\n]"
+												},
+												{
+													"name": "Chimborazo - Ecuador",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{servidor}}/api/general/division-regional?nivel=2&codigo=ECU-06",
+															"host": [
+																"{{servidor}}"
+															],
+															"path": [
+																"api",
+																"general",
+																"division-regional"
+															],
+															"query": [
+																{
+																	"key": "nivel",
+																	"value": "2"
+																},
+																{
+																	"key": "codigo",
+																	"value": "ECU-06"
+																}
+															]
+														}
+													},
+													"_postman_previewlanguage": "json",
+													"header": null,
+													"cookie": [],
+													"body": "[\r\n    {\"codigo\": \"ECU-0601\", \"nombre\": \"Riobamba\"},\r\n    {\"codigo\": \"ECU-0602\", \"nombre\": \"Alausi\"},\r\n    {\"codigo\": \"ECU-0603\", \"nombre\": \"Colta\"},\r\n    {\"codigo\": \"ECU-0604\", \"nombre\": \"Chambo\"},\r\n    {\"codigo\": \"ECU-0605\", \"nombre\": \"Chunchi\"},\r\n    {\"codigo\": \"ECU-0606\", \"nombre\": \"Guamote\"},\r\n    {\"codigo\": \"ECU-0607\", \"nombre\": \"Guano\"},\r\n    {\"codigo\": \"ECU-0608\", \"nombre\": \"Pallatanga\"},\r\n    {\"codigo\": \"ECU-0609\", \"nombre\": \"Penipe\"},\r\n    {\"codigo\": \"ECU-0610\", \"nombre\": \"Cumanda\"}\r\n]"
+												},
+												{
+													"name": "Beni - Bolivia",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{servidor}}/api/general/division-regional?nivel=2&codigo=BOL-08",
+															"host": [
+																"{{servidor}}"
+															],
+															"path": [
+																"api",
+																"general",
+																"division-regional"
+															],
+															"query": [
+																{
+																	"key": "nivel",
+																	"value": "2"
+																},
+																{
+																	"key": "codigo",
+																	"value": "BOL-08"
+																}
+															]
+														}
+													},
+													"_postman_previewlanguage": "json",
+													"header": null,
+													"cookie": [],
+													"body": "[\r\n    {\r\n        \"clave\": \"BOL-802\",\r\n        \"valor\": \"Antonio Vaca Diez\"\r\n    },\r\n    {\r\n        \"clave\": \"BOL-803\",\r\n        \"valor\": \"Gral. José Ballivián\"\r\n    },\r\n    {\r\n        \"clave\": \"BOL-804\",\r\n        \"valor\": \"Yacuma\"\r\n    },\r\n    {\r\n        \"clave\": \"BOL-805\",\r\n        \"valor\": \"Moxos\"\r\n    },\r\n    {\r\n        \"clave\": \"BOL-806\",\r\n        \"valor\": \"Marban\"\r\n    },\r\n    {\r\n        \"clave\": \"BOL-807\",\r\n        \"valor\": \"Mamoré\"\r\n    },\r\n    {\r\n        \"clave\": \"BOL-808\",\r\n        \"valor\": \"Iténez\"\r\n    }\r\n]"
+												}
+											]
+										},
+										{
+											"name": "Obtener divisiones regionales - Nivel 3",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{servidor}}/api/validaciones/division-regional?nivel=3&codigo={{ubigeo-nive2}}",
+													"host": [
+														"{{servidor}}"
+													],
+													"path": [
+														"api",
+														"validaciones",
+														"division-regional"
+													],
+													"query": [
+														{
+															"key": "nivel",
+															"value": "3"
+														},
+														{
+															"key": "codigo",
+															"value": "{{ubigeo-nive2}}"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Chincheros - Apurímac - Perú",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{servidor}}/api/validaciones/division-regional?nivel=3&codigo=PER-030700",
+															"host": [
+																"{{servidor}}"
+															],
+															"path": [
+																"api",
+																"validaciones",
+																"division-regional"
+															],
+															"query": [
+																{
+																	"key": "nivel",
+																	"value": "3"
+																},
+																{
+																	"key": "codigo",
+																	"value": "PER-030700"
+																}
+															]
+														}
+													},
+													"_postman_previewlanguage": "json",
+													"header": null,
+													"cookie": [],
+													"body": "[\r\n    {\r\n        \"clave\": \"PER-030701\",\r\n        \"valor\": \"Chincheros\"\r\n    },\r\n    {\r\n        \"clave\": \"PER-030702\",\r\n        \"valor\": \"Ongoy\"\r\n    },\r\n    {\r\n        \"clave\": \"PER-030703\",\r\n        \"valor\": \"Ocobamba\"\r\n    },\r\n    {\r\n        \"clave\": \"PER-030704\",\r\n        \"valor\": \"Cocharcas\"\r\n    },\r\n    {\r\n        \"clave\": \"PER-030705\",\r\n        \"valor\": \"Anco-Huallo\"\r\n    },\r\n    {\r\n        \"clave\": \"PER-030706\",\r\n        \"valor\": \"Huaccana\"\r\n    },\r\n    {\r\n        \"clave\": \"PER-030707\",\r\n        \"valor\": \"Uranmarca\"\r\n    },\r\n    {\r\n        \"clave\": \"PER-030708\",\r\n        \"valor\": \"Ranracancha\"\r\n    },\r\n    {\r\n        \"clave\": \"PER-030709\",\r\n        \"valor\": \"Rocchacc\"\r\n    },\r\n    {\r\n        \"clave\": \"PER-030710\",\r\n        \"valor\": \"El Porvenir\"\r\n    },\r\n    {\r\n        \"clave\": \"PER-030711\",\r\n        \"valor\": \"Los Chankas\"\r\n    }\r\n]"
+												},
+												{
+													"name": "Aluasi - Chimborazo - Ecuador",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{servidor}}/api/general/division-regional?nivel=3&codigo=ECU-0602",
+															"host": [
+																"{{servidor}}"
+															],
+															"path": [
+																"api",
+																"general",
+																"division-regional"
+															],
+															"query": [
+																{
+																	"key": "nivel",
+																	"value": "3"
+																},
+																{
+																	"key": "codigo",
+																	"value": "ECU-0602"
+																}
+															]
+														}
+													},
+													"_postman_previewlanguage": "json",
+													"header": null,
+													"cookie": [],
+													"body": "[\r\n    {\"codigo\": \"ECU-060250\", \"nombre\": \"Alausi\"},\r\n    {\"codigo\": \"ECU-060251\", \"nombre\": \"Achupallas\"},\r\n    {\"codigo\": \"ECU-060252\", \"nombre\": \"Guasuntos\"},\r\n    {\"codigo\": \"ECU-060253\", \"nombre\": \"Huigra\"},\r\n    {\"codigo\": \"ECU-060254\", \"nombre\": \"Multitud\"},\r\n    {\"codigo\": \"ECU-060255\", \"nombre\": \"Pistishi\"},\r\n    {\"codigo\": \"ECU-060256\", \"nombre\": \"Pumallacta\"},\r\n    {\"codigo\": \"ECU-060257\", \"nombre\": \"Pallatanga\"},\r\n    {\"codigo\": \"ECU-060258\", \"nombre\": \"Sevilla\"},\r\n    {\"codigo\": \"ECU-060259\", \"nombre\": \"Sibambe\"},\r\n    {\"codigo\": \"ECU-060260\", \"nombre\": \"Tixan\"}\r\n]"
+												},
+												{
+													"name": "Iténez - Beni - Bolivia",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{servidor}}/api/validaciones/division-regional?nivel=3&codigo=BOL-808",
+															"host": [
+																"{{servidor}}"
+															],
+															"path": [
+																"api",
+																"validaciones",
+																"division-regional"
+															],
+															"query": [
+																{
+																	"key": "nivel",
+																	"value": "3"
+																},
+																{
+																	"key": "codigo",
+																	"value": "BOL-808"
+																}
+															]
+														}
+													},
+													"_postman_previewlanguage": "json",
+													"header": null,
+													"cookie": [],
+													"body": "[\r\n    {\r\n        \"clave\": \"BOL-80801\",\r\n        \"valor\": \"Magdalena\"\r\n    },\r\n    {\r\n        \"clave\": \"BOL-80802\",\r\n        \"valor\": \"Baures\"\r\n    },\r\n    {\r\n        \"clave\": \"BOL-80803\",\r\n        \"valor\": \"Huacaraje\"\r\n    }\r\n]"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "Datos Laborales",
+									"item": [
+										{
+											"name": "Obtener Sectores de trabajo",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{servidor}}/api/validaciones/sectores-laborales",
+													"host": [
+														"{{servidor}}"
+													],
+													"path": [
+														"api",
+														"validaciones",
+														"sectores-laborales"
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Listado",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{servidor}}/api/validaciones/sectores",
+															"host": [
+																"{{servidor}}"
+															],
+															"path": [
+																"api",
+																"validaciones",
+																"sectores"
+															]
+														}
+													},
+													"_postman_previewlanguage": "json",
+													"header": null,
+													"cookie": [],
+													"body": "[\r\n    {\r\n        \"clave\": \"01\",\r\n        \"valor\": \"Salud\"\r\n    },\r\n    {\r\n        \"clave\": \"02\",\r\n        \"valor\": \"Educación\"\r\n    },\r\n    {\r\n        \"clave\": \"03\",\r\n        \"valor\": \"Comercio\"\r\n    },\r\n    {\r\n        \"clave\": \"04\",\r\n        \"valor\": \"Transporte\"\r\n    }\r\n]"
+												}
+											]
+										},
+										{
+											"name": "Obtener Ocupaciones por Sector de Trabajo",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{servidor}}/api/validaciones/ocupaciones?sector={{sector-laboral}}",
+													"host": [
+														"{{servidor}}"
+													],
+													"path": [
+														"api",
+														"validaciones",
+														"ocupaciones"
+													],
+													"query": [
+														{
+															"key": "sector",
+															"value": "{{sector-laboral}}"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Listado Exitoso",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{servidor}}/api/validaciones/ocupaciones?sector=03",
+															"host": [
+																"{{servidor}}"
+															],
+															"path": [
+																"api",
+																"validaciones",
+																"ocupaciones"
+															],
+															"query": [
+																{
+																	"key": "sector",
+																	"value": "03"
+																}
+															]
+														}
+													},
+													"_postman_previewlanguage": "json",
+													"header": null,
+													"cookie": [],
+													"body": "[\r\n    {\r\n        \"clave\": \"0301\",\r\n        \"valor\": \"Comerciante\"\r\n    },\r\n    {\r\n        \"clave\": \"0302\",\r\n        \"valor\": \"Vendedor\"\r\n    },\r\n    {\r\n        \"clave\": \"0303\",\r\n        \"valor\": \"Asistente de Tienda\"\r\n    }\r\n]"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "Obtener Información de Inicio para el Formulario de Creación de Cuenta",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{servidor}}/api/validaciones/inicio-registro",
+											"host": [
+												"{{servidor}}"
+											],
+											"path": [
+												"api",
+												"validaciones",
+												"inicio-registro"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Listado",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{servidor}}/api/validaciones/inicio-registro",
+													"host": [
+														"{{servidor}}"
+													],
+													"path": [
+														"api",
+														"validaciones",
+														"inicio-registro"
+													]
+												}
+											},
+											"_postman_previewlanguage": "json",
+											"header": null,
+											"cookie": [],
+											"body": "{\r\n    \"tiposCuenta\": [\r\n        {\r\n            \"id\": 1,\r\n            \"nombre\": \"Libertad\",\r\n            \"descripcion\": \"Empieza tu historial crediticio con una cuenta sin costo de mantenimiento\",\r\n            \"cuotaMantenimiento\": 0.0,\r\n            \"tasaInteres\": 0.005,\r\n            \"beneficios\": false\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"nombre\": \"Premium\",\r\n            \"descripcion\": \"Apretura tu cuenta premium y disfruta de los beneficios que tenemos para ti\",\r\n            \"cuotaMantenimiento\": 30.0,\r\n            \"tasaInteres\": 1.5,\r\n            \"beneficios\": true\r\n        }\r\n    ],\r\n    \"paises\": [\r\n        {\r\n            \"clave\": \"BOL\",\r\n            \"valor\": \"Bolivia\"\r\n        },\r\n        {\r\n            \"clave\": \"ECU\",\r\n            \"valor\": \"Ecuador\"\r\n        },\r\n        {\r\n            \"clave\": \"PER\",\r\n            \"valor\": \"Perú\"\r\n        }\r\n    ]\r\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Crear Cliente",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"documentoIdentidad\": \"{{cliente-documentoIdent}}\",\r\n    \"apellidoPaterno\": \"{{cliente-apellidoPaterno}}\",\r\n    \"apellidoMaterno\": \"{{cliente-apellidoMaterno}}\",\r\n    \"prenombres\": \"{{cliente-prenombre}}\",\r\n    \"fechaNacimiento\": \"{{cliente-fechaNac}}\",\r\n    \"direccion\": \"{{cliente-direccion}}\",\r\n    \"ubigeo\": \"{{cliente-ubigeo}}\",\r\n    \"postal\": \"{{cliente-codigoPostal}}\",\r\n    \"ocupacion\": \"{{cliente-ocupacion}}\",\r\n    \"correo\": \"{{cliente-correoElectr}}\",\r\n    \"telefono\": \"{{cliente-telefono}}\",\r\n    \"contrasena\": \"{{cliente-contrasena}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{servidor}}/api/cliente/crear?tipoCuenta={{cuenta-tipo}}",
+									"host": [
+										"{{servidor}}"
+									],
+									"path": [
+										"api",
+										"cliente",
+										"crear"
+									],
+									"query": [
+										{
+											"key": "tipoCuenta",
+											"value": "{{cuenta-tipo}}"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Creación Exitosa",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"documentoIdentidad\": \"10203040\",\r\n    \"apellidoPaterno\": \"Quispe\",\r\n    \"apellidoMaterno\": \"Vera\",\r\n    \"prenombres\": \"Justiniano\",\r\n    \"fechaNacimiento\": \"1984-12-08\",\r\n    \"direccion\": \"Jr. San Cristóbal 1058\",\r\n    \"ubigeo\": \"PER-030708\",\r\n    \"postal\": \"03830\",\r\n    \"ocupacion\": \"0301\",\r\n    \"correo\": \"jquispev@gmail.com\",\r\n    \"telefono\": \"+51 903851415\",\r\n    \"contrasena\": \"$Prueba202108!\"    \r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{servidor}}/api/cliente/crear?tipoCuenta=1",
+											"host": [
+												"{{servidor}}"
+											],
+											"path": [
+												"api",
+												"cliente",
+												"crear"
+											],
+											"query": [
+												{
+													"key": "tipoCuenta",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": null,
+									"cookie": [],
+									"body": "{\n    \"exito\": true,\n    \"valor\": \"Pronto Hash\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Transacciones",
+			"item": [
+				{
+					"name": "Transacciones",
+					"item": [
+						{
+							"name": "Verificar cuenta a transferir",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{servidor}}/api/transferencias/verificar-cuenta?numero={{cuenta-numero}}",
+									"host": [
+										"{{servidor}}"
+									],
+									"path": [
+										"api",
+										"transferencias",
+										"verificar-cuenta"
+									],
+									"query": [
+										{
+											"key": "numero",
+											"value": "{{cuenta-numero}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Transferir",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"emisor\": \"Pronto Hash\",\r\n    \"receptor\": \"405123654845421\",\r\n    \"monto\": 15.01\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{servidor}}/api/transferencias/transferir",
+									"host": [
+										"{{servidor}}"
+									],
+									"path": [
+										"api",
+										"transferencias",
+										"transferir"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "servidor",
+			"value": "http://localhost:8081"
+		}
+	]
+}

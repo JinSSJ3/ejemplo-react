@@ -1,13 +1,17 @@
+import React, { useState } from "react";
+import "../styles/Home.scss";
 import { Button, makeStyles, TextField } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
-import NavBar from "../components/NavBar";
-import "./../styles/Login.scss";
+import NavBar from "../components/Navegacion/NavBar";
+import "../styles/Login.scss";
 import logo from "../static/logo_bank.png";
-const Estilos = makeStyles((theme) => ({
+import axios from "axios";
+let base64 = require("base-64");
+const useStyles = makeStyles((theme) => ({
   logo: {
-    height: "65px",
-    [theme.breakpoints.down("md")]: {
-      height: "45px",
+    height: "165px",
+
+    [theme.breakpoints.down("sm")]: {
+      height: "100px",
     },
   },
   logoImg: {
@@ -17,44 +21,85 @@ const Estilos = makeStyles((theme) => ({
 }));
 
 const Login = (props) => {
-
-
-  const [usuarioLogin, setUsuarioLogin] = useState({ email: "", password: "" });
-
-
-/*   useEffect(() => {
-    document.title = usuarioLogin.email;
-  }, [usuarioLogin]); */
-  // 1 mount
-  // 2 despues de mount
-  // 3 cuando actualizamos
-  // 4 unmount
-
-  const classes = Estilos();
-  console.log("Login props", props);
-  const onClickIniciarSesion = () => {
-    props.history.push("/user");
+  const classes = useStyles();
+  const [usuarioLogin, setUsuario] = useState({
+    email: "",
+    password: "",
+  });
+  function ingresoDeCorreooo(event) {
+    setUsuario({
+      ...usuarioLogin,
+      ...{ email: event.target.value },
+    });
+    console.log("login", event.target.value);
+  }
+  const handleChangePassword = (event) => {
+    setUsuario({ ...usuarioLogin, ...{ password: event.target.value } });
+    console.log("login pass", event.target.value);
   };
-  const onClickCrearCuenta = () => {
+  const handleIniciarSesion = async () => {
+    const body = {
+      usuario: usuarioLogin.email,
+      clave: usuarioLogin.password,
+    };
+    try {
+      const response = await axios.post(
+        "http://ec2-44-193-230-143.compute-1.amazonaws.com:8081/logueo",
+        body
+      );
+
+      console.log("LOGIN:", response.data);
+      if (response.data.exito) {
+        alert("Iniciar sesion correcto");
+
+        props.history.push("/user");
+      } else {
+        alert("Error");
+      }
+
+      //localStorage("credenciales");
+
+      /* const headers = {
+        Authorization:
+          "Basic " +
+          base64.encode(usuarioLogin.email + ":" + usuarioLogin.password),
+      }; */
+      /*    let config = {
+        headers: {
+          Authorization:
+            "Basic " +
+            base64.encode(usuarioLogin.email + ":" + usuarioLogin.password),
+        },
+      }; */
+      /*  const response2 = await axios.get(
+        "http://ec2-44-193-230-143.compute-1.amazonaws.com:8081/api/transferencias/verificar-cuenta?numero=405123654845421"
+        //,config
+      );
+   */
+      //console.log("LOGIN:", response2);
+    } catch (error) {
+      console.log("LOGIN:", "No conection");
+    }
+
+    //props.history.push("/user");
+  };
+  const handleCrearCuenta = () => {
     props.history.push("/account-creation");
   };
-  const ingresoDeCorreo = (event) => {
-    setUsuarioLogin({ ...usuarioLogin, email: event.target.value });
-  };
-  const ingresoContrasenia = (event) => {
-    setUsuarioLogin({ ...usuarioLogin, password: event.target.value });
-  };
-  const iniciarSesion = () => {
-    props.history.push("/user");
+  const iniciarSesion = async (props) => {
+    console.log("Iniciar sesion");
   };
   return (
     <div className="home-page-wrapper">
-      <NavBar titulo={"Banco AEDITIP - Iniciar Sesión"} />
-
+      <NavBar title={props.title} />
       <div className="login ccontainer">
         <div className="form">
           <div className={classes.logo}>
-            <img className={classes.logoImg} src={logo} alt="logo-bank" />
+            <img
+              className={classes.logoImg}
+              src={logo}
+              alt="logo-banco-login"
+            />
           </div>
           <TextField
             onKeyUp={(event) => {
@@ -72,9 +117,10 @@ const Login = (props) => {
             type="email"
             autoComplete="current-password"
             variant="outlined"
-            onChange={ingresoDeCorreo}
+            onChange={ingresoDeCorreooo}
             value={usuarioLogin.email}
           />
+
           <TextField
             onKeyUp={(event) => {
               if (event.keyCode === 13) {
@@ -86,33 +132,49 @@ const Login = (props) => {
             }}
             fullWidth
             style={{ margin: "4% 2%" }}
-            id="outlined-email-input"
-            label="Contraseña"
+            id="outlined-password-input"
+            label="Password"
             type="password"
             autoComplete="current-password"
             variant="outlined"
-            onChange={ingresoContrasenia}
+            onChange={handleChangePassword}
             value={usuarioLogin.password}
           />
+
+          <div
+            className="anchor"
+            style={{ alignSelf: "flex-end" }}
+            onClick={() => alert("Recuperar password")}
+          >
+            Recuperar contraseña
+          </div>
+
           <Button
             style={{ margin: "4% 2%" }}
-            variant="contained"
             color="primary"
-            onClick={onClickIniciarSesion}
+            variant="contained"
+            fullWidth
+            onClick={handleIniciarSesion}
           >
-            Iniciar sesión
+            Iniciar Sesion
           </Button>
-          o
+          <div> o </div>
           <Button
             style={{ margin: "4% 2%" }}
+            color="primary"
             variant="contained"
-            color="secondary"
-            onClick={onClickCrearCuenta}
+            fullWidth
+            onClick={handleCrearCuenta}
           >
-            Crear Cuenta
+            Crear cuenta
           </Button>
         </div>
       </div>
+      {/*           ESTE es el LOGIN CTV
+            <Button variant="contained" color="primary" onClick={handleIniciarSesion}>Iniciar sesión</Button>
+            <Button variant="contained" color="secondary" onClick={handleCrearCuenta}>Crear cuenta</Button>
+            
+             */}
     </div>
   );
 };

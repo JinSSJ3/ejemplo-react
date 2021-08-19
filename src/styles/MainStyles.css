@@ -1,0 +1,15 @@
+.main-container {
+    background-image: linear-gradient(to top,
+            rgba(0, 0, 0, 0.65),
+            rgba(0, 0, 0, 0.55)),
+        url("https://assets-global.website-files.com/5f4f67c5950db17954dd4f52/5f5b7704da8b97990b5107fa_tipos-de-banco.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    min-height: 600px;
+    min-height: calc(100vh - 65px);
+}
+.main-container.profile{
+    min-height: 100vh;
+}

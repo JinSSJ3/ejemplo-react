@@ -1,15 +1,15 @@
 import React from "react";
+import "../styles/AccountCreation.scss";
+import NavBar from "../components/Navegacion/NavBar";
 import MainContainer from "../components/AccountCreation/MainContainer";
-import NavBar from "../components/NavBar";
-import "../styles/AccCreation.scss";
 const AccountCreation = (props) => {
+  //const [finalStage, setFinalStage] = useState(false);
+
   return (
     <div className="home-page-wrapper">
-      <NavBar titulo={"Banco AEDITIP - Crear Cuenta"} />
-      <div className="accouunt-creation-container">
-        Creacion de cuenta
-         <MainContainer {...props} />
-
+      <NavBar title={props.title}/>
+      <div className="account-creation-container">
+        <MainContainer {...props} />
       </div>
     </div>
   );

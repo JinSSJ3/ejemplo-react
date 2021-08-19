@@ -1,7 +1,15 @@
-.home-page-wrapper {
-  min-height: 100vh;
+.login-container {
+  display: flex;
+  height: 100%;
   width: 100%;
-  background-image: url("https://assets-global.website-files.com/5f4f67c5950db17954dd4f52/5f5b7704da8b97990b5107fa_tipos-de-banco.jpeg");
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  .login-form {
+    background-color: rgba(255, 255, 255, 0.096);
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .login.ccontainer {
@@ -20,33 +28,52 @@
   height: calc(100vh - 65px);
   align-items: center;
   justify-content: flex-end;
-  .form {
-    margin: 7%;
+  //background-color: teal;
+}
+
+.login.ccontainer .form {
+  margin: 7%;
+  border-radius: 4px;
+  padding: 2% 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.6);
+  .anchor {
+    text-decoration: underline;
+    cursor: pointer;
+    color: blue;
+    &:active {
+      color: purple;
+    }
+  }
+  img {
     border-radius: 4px;
-    padding: 2% 2%;
-    display: flex;
-    flex-direction: column;
+    width: 87%;
+    margin-bottom: 5%;
+  }
+  a {
+    cursor: pointer;
+    align-self: flex-end;
+    margin-top: 3%;
+    // text-decoration: line-through;
+  }
+}
+
+//mobile
+@media screen and (max-width: 960px) {
+  .login.ccontainer {
+    justify-content: center;
     align-items: center;
-    width: 400px;
-    background-color: rgba(255, 255, 255, 0.6);
-    .anchor {
-      text-decoration: underline;
-      cursor: pointer;
-      color: blue;
-      &:active {
-        color: purple;
-      }
-    }
+  }
+
+  .login.ccontainer .form {
+    width: 80%;
+    margin: 2%;
     img {
-      border-radius: 4px;
-      width: 87%;
+      width: 65%;
       margin-bottom: 5%;
-    }
-    a {
-      cursor: pointer;
-      align-self: flex-end;
-      margin-top: 3%;
-      // text-decoration: line-through;
     }
   }
 }

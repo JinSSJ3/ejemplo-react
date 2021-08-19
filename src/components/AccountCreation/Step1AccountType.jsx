@@ -1,4 +1,3 @@
-import { Paper } from "@material-ui/core";
 import React from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -28,23 +27,22 @@ const accounts = [
 ];
 const Step1AccountType = (props) => {
   const classes = useStyles();
-
   const [country, setCountry] = React.useState("");
   const handleChange = (event) => {
     setCountry(event.target.value);
   };
   return (
-    <Paper className="step-container">
+    <div className="step-container">
       {" "}
       <Typography variant="h5" gutterBottom>
-        Elije un tipo de cuenta
+       Elije un tipo de cuenta
       </Typography>
       <div className="step-content">
         {accounts.map((account, index) => (
           <Card className={classes.root}>
             <CardContent>
               <Typography variant="h5" component="h2">
-                <PaymentIcon /> {account.name}
+              <PaymentIcon/> {account.name}
               </Typography>
               <Typography variant="body2" component="p">
                 {account.rate + "% interés"}
@@ -78,9 +76,9 @@ const Step1AccountType = (props) => {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={10}>Peru</MenuItem>
-              <MenuItem value={20}>El Salvador</MenuItem>
-              <MenuItem value={30}>Mejico</MenuItem>
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
             </Select>
             <FormHelperText>Label + placeholder</FormHelperText>
           </FormControl>
@@ -94,7 +92,7 @@ const Step1AccountType = (props) => {
           </Grid>
         </Grid>
       </Grid>
-    </Paper>
+    </div>
   );
 };
 export default Step1AccountType;
